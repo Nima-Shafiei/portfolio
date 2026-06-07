@@ -1,40 +1,40 @@
 // ===== HAMBURGER MENU =====
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
+document.addEventListener("DOMContentLoaded", () => {
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
-});
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-// بستن منو با کلیک روی هر لینک
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     });
-});
 
-// ===== CONTACT FORM =====
-const form = document.getElementById('contactForm');
-const btn = form.querySelector('button'); // دکمه ارسال
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    // ===== CONTACT FORM =====
+    const form = document.getElementById('contactForm');
+    const btn = form.querySelector('button');
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    if (!name || !email || !message) {
-        alert('لطفاً همه فیلدها را کامل کنید');
-        return;
-    }
-    // 👇 اینجا دکمه قفل میشه (شروع ارسال)
-    btn.disabled = true;
-    btn.textContent = 'در حال ارسال...';
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
 
-    emailjs
-        .send('service_2e0imff', 'template_ugoh1s3', {
+        if (!name || !email || !message) {
+            alert('لطفاً همه فیلدها را کامل کنید');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'در حال ارسال...';
+
+        emailjs.send('service_2e0imff', 'template_ugoh1s3', {
             from_name: name,
             from_email: email,
             message: message,
@@ -43,15 +43,16 @@ form.addEventListener('submit', function (e) {
             alert('پیام با موفقیت ارسال شد 🚀');
             form.reset();
         })
-        .catch(error => {
+        .catch((error) => {
             console.error(error);
             alert('خطا در ارسال پیام');
         })
         .finally(() => {
-            // 👇 اینجا دوباره فعال میشه (پایان ارسال)
             btn.disabled = false;
             btn.textContent = 'ارسال پیام';
         });
+    });
+
 });
 
 // ===== SMOOTH SCROLL WITH OFFSET FOR FIXED HEADER =====
