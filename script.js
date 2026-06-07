@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.disabled = true;
         btn.textContent = 'در حال ارسال...';
 
-        emailjs.send('service_2e0imff', 'template_ugoh1s3')
+        emailjs.send('service_2e0imff', 'template_ugoh1s3', {
+            name: name,
+            email: email,
+            message: message,
+        }
         .then(() => {
             alert('پیام با موفقیت ارسال شد 🚀');
             form.reset();
