@@ -1,0 +1,72 @@
+// ===== HAMBURGER MENU =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
+});
+
+// بستن منو با کلیک روی هر لینک
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+// ===== CONTACT FORM =====
+const form = document.getElementById('contactForm');
+const btn = form.querySelector('button'); // دکمه ارسال
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !message) {
+        alert('لطفاً همه فیلدها را کامل کنید');
+        return;
+    }
+    // 👇 اینجا دکمه قفل میشه (شروع ارسال)
+    btn.disabled = true;
+    btn.textContent = 'در حال ارسال...';
+
+    emailjs
+        .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            from_name: name,
+            from_email: email,
+            message: message,
+        })
+        .then(() => {
+            alert('پیام با موفقیت ارسال شد 🚀');
+            form.reset();
+        })
+        .catch(error => {
+            console.error(error);
+            alert('خطا در ارسال پیام');
+        })
+        .finally(() => {
+            // 👇 اینجا دوباره فعال میشه (پایان ارسال)
+            btn.disabled = false;
+            btn.textContent = 'ارسال پیام';
+        });
+});
+
+// ===== SMOOTH SCROLL WITH OFFSET FOR FIXED HEADER =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+            const offsetTop = target.offsetTop - 70;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    });
+});
