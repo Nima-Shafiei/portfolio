@@ -34,7 +34,7 @@ form.addEventListener('submit', function (e) {
     btn.textContent = 'در حال ارسال...';
 
     emailjs
-        .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+        .send('service_2e0imff', 'template_ugoh1s3', {
             from_name: name,
             from_email: email,
             message: message,
