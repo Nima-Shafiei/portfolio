@@ -7,7 +7,7 @@ This project showcases my skills, experience, and projects as a front-end develo
 
 ## 📸 Preview
 
-![Portfolio Preview](assets/images/screenshot.png)
+![Portfolio Preview](images/screenshot.png)
 
 ---
 
