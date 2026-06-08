@@ -15,41 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ===== CONTACT FORM =====
-    const form = document.getElementById('contactForm');
-    const btn = form.querySelector('button');
+    document.addEventListener("DOMContentLoaded", () => {
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
 
-        if (!name || !email || !message) {
-            alert('لطفاً همه فیلدها را کامل کنید');
-            return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = 'در حال ارسال...';
-
-        emailjs.send('service_2e0imff', 'template_ugoh1s3', {
-            name: name,
-            email: email,
-            message: message,
-        }
-        .then(() => {
-            alert('پیام با موفقیت ارسال شد 🚀');
-            form.reset();
-        })
-        .catch((error) => {
-            console.error(error);
-            alert('خطا در ارسال پیام');
-        })
-        .finally(() => {
-            btn.disabled = false;
-            btn.textContent = 'ارسال پیام';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         });
     });
 
