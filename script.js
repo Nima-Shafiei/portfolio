@@ -1,22 +1,4 @@
-// ===== HAMBURGER MENU =====
-document.addEventListener("DOMContentLoaded", () => {
-
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -31,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.remove('no-scroll');
         });
     });
-
 });
 
 // ===== SMOOTH SCROLL WITH OFFSET FOR FIXED HEADER =====
