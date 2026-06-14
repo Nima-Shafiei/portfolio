@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ===== SMOOTH SCROLL WITH OFFSET FOR FIXED HEADER =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
