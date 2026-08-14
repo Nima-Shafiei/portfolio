@@ -733,3 +733,226 @@ footer {
 body.no-scroll {
     overflow: hidden;
 }
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.portfolio-card {
+    position: relative;
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.portfolio-card:hover {
+    border-color: #c084fc;
+    transform: translateY(-8px);
+    box-shadow:
+        0 0 20px rgba(192, 132, 252, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio-thumb {
+    position: relative;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d0d;
+    border-bottom: 1px solid #252525;
+    overflow: hidden;
+}
+.portfolio-thumb i {
+    font-size: 3rem;
+    color: #c084fc;
+    transition: transform 0.4s ease;
+}
+.portfolio-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.portfolio-card:hover .portfolio-thumb i {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(192, 132, 252, 0.92),
+        rgba(124, 58, 237, 0.92)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+.portfolio-overlay span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.portfolio-info {
+    padding: 18px 20px 22px;
+}
+.portfolio-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.portfolio-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: #c084fc;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.portfolio-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+.portfolio-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.portfolio-modal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #181818;
+    border: 1px solid #252525;
+    border-radius: 24px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(192, 132, 252, 0.15);
+    transform: scale(0.85);
+    opacity: 0;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+.portfolio-modal-overlay.active .portfolio-modal {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.portfolio-modal-close {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 13, 13, 0.7);
+    border: 1px solid #252525;
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.portfolio-modal-close:hover {
+    background: #c084fc;
+    border-color: #c084fc;
+    color: #0d0d0d;
+    transform: rotate(90deg);
+}
+
+.portfolio-modal-thumb {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c084fc, #7c3aed);
+    border-radius: 24px 24px 0 0;
+}
+.portfolio-modal-thumb i {
+    font-size: 3.5rem;
+    color: #fff;
+}
+.portfolio-modal-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px 24px 0 0;
+}
+
+.portfolio-modal-body {
+    padding: 28px;
+}
+.portfolio-modal-body .portfolio-tag {
+    margin-top: 0;
+}
+.portfolio-modal-body h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 6px 0 14px;
+}
+.portfolio-modal-body p {
+    color: #bbb;
+    font-size: 1rem;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.portfolio-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.portfolio-modal-tag {
+    background: #0d0d0d;
+    border: 1px solid #252525;
+    color: #ddd;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+@media (max-width: 480px) {
+    .portfolio-modal-body {
+        padding: 22px;
+    }
+    .portfolio-modal-body h3 {
+        font-size: 1.3rem;
+    }
+}
